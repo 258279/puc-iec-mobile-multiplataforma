@@ -11,8 +11,7 @@ import { usePopularMovies } from '@/queries/movies/get-popular-movies';
 import { useCounterStore } from '@/store/counterStore';
 import { isTokenError, isTokenMissing } from '@/services/api';
 import TokenMissingScreen from '@/components/TokenMissingScreen';
-// TODO [TASK 3]: descomentar quando renderizar MovieCard
-// import MovieCard from '@/components/MovieCard';
+import MovieCard from '@/components/MovieCard';
 
 export default function MovieList() {
   const { data, isLoading, error, refetch } = usePopularMovies();
@@ -39,21 +38,14 @@ export default function MovieList() {
     );
   }
 
-  // TODO [TASK 3]: substituir o stub abaixo por FlatList
-  //
-  //   <FlatList
-  //     data={data?.results ?? []}
-  //     keyExtractor={(item) => String(item.id)}
-  //     renderItem={({ item }) => <MovieCard movie={item} />}
-  //     onRefresh={refetch}
-  //     refreshing={isLoading}
-  //   />
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Counter: {count}</Text>
-      <Text>TODO [TASK 3]: renderizar FlatList aqui</Text>
-      <Text style={styles.hint}>{data?.results?.length ?? 0} filmes carregados</Text>
-    </View>
+    <FlatList
+      data={data?.results ?? []}
+      keyExtractor={(item) => String(item.id)}
+      renderItem={({ item }) => <MovieCard movie={item} />}
+      onRefresh={refetch}
+      refreshing={isLoading}
+    />
   );
 }
 
