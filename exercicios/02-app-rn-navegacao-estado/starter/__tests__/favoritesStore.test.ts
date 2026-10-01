@@ -1,18 +1,6 @@
 // __tests__/favoritesStore.test.ts
 //
 // ATIVIDADE 2 — testar useFavoritesStore.
-//
-// TODO [TASK 9]: gerar testes pra favoritesStore usando IA.
-//
-// Prompt sugerido:
-//   "Gere testes Jest pra useFavoritesStore (Zustand) cobrindo:
-//    - toggle adiciona id se não existe
-//    - toggle remove id se existe
-//    - isFavorite retorna true após add
-//    - clear esvazia ids
-//    Use describe + beforeEach pra resetar state."
-//
-// Mínimo 3 testes verdes pra CI passar (somados aos 3 de counterStore = 6 total).
 
 import { useFavoritesStore } from '../src/store/favoritesStore';
 
@@ -21,8 +9,52 @@ describe('favoritesStore', () => {
     useFavoritesStore.setState({ ids: [] });
   });
 
-  // TODO [TASK 9]: adicione 3+ testes aqui (use IA).
-  test.skip('placeholder — remova quando implementar', () => {
-    expect(true).toBe(true);
+  test('toggle adiciona id se não existe', () => {
+    const { toggle, ids } = useFavoritesStore.getState();
+    
+    toggle(1);
+    expect(useFavoritesStore.getState().ids).toContain(1);
+    
+    toggle(2);
+    expect(useFavoritesStore.getState().ids).toContain(2);
+    expect(useFavoritesStore.getState().ids).toHaveLength(2);
+  });
+
+  test('toggle remove id se existe', () => {
+    const { toggle } = useFavoritesStore.getState();
+    
+    toggle(1);
+    toggle(2);
+    expect(useFavoritesStore.getState().ids).toHaveLength(2);
+    
+    toggle(1);
+    expect(useFavoritesStore.getState().ids).not.toContain(1);
+    expect(useFavoritesStore.getState().ids).toContain(2);
+    expect(useFavoritesStore.getState().ids).toHaveLength(1);
+  });
+
+  test('isFavorite retorna true após add', () => {
+    const { add, isFavorite } = useFavoritesStore.getState();
+    
+    expect(isFavorite(1)).toBe(false);
+    
+    add(1);
+    expect(isFavorite(1)).toBe(true);
+    
+    add(2);
+    expect(isFavorite(2)).toBe(true);
+    expect(isFavorite(1)).toBe(true);
+  });
+
+  test('clear esvazia ids', () => {
+    const { add, clear } = useFavoritesStore.getState();
+    
+    add(1);
+    add(2);
+    add(3);
+    expect(useFavoritesStore.getState().ids).toHaveLength(3);
+    
+    clear();
+    expect(useFavoritesStore.getState().ids).toHaveLength(0);
   });
 });
