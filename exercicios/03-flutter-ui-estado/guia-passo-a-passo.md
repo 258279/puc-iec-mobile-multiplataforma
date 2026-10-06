@@ -2,7 +2,7 @@
 
 > O projeto **já roda** (`cd exercicios/03-flutter-ui-estado/pratica && ls lib` confirma o lugar → `flutter run -d chrome --web-port 5300`). Você completa as TASKs até `flutter test` ficar **todo verde**. Rode `flutter test` no começo — os vermelhos são o seu alvo.
 
-> 🧑‍🏫 **EM AULA (juntos):** TASK 1, 2, 3 (Firebase) e 10 (persistência offline). 🧑‍💻 **EM CASA (sozinho):** TASK 4–9 e 11–15. A numeração é a **mesma do enunciado**.
+> 🧑‍🏫 **FEITO EM AULA:** TASK 1 (card) e o setup do Firebase (TASK 3). 🧑‍💻 **EM CASA (sozinho):** TASK 2, 4–7, 9 e 10–15. ⏸ **TASK 8 (Remote Config) adiada — pule.** A numeração é a **mesma do enunciado**.
 
 ## Ex1 · TASK 1 — componha o `MovieCard`
 `lib/widgets/movie_card.dart`. Primeiro **descomente** `import 'poster_art.dart';` (o pôster já vem pronto). Troque o stub (só título) por:
@@ -114,7 +114,7 @@ void main() {
 ---
 
 ## Firebase — TASK 3 (aula), 7 e 8 (casa)
-Passo a passo do projeto Firebase, das regras do Firestore e do Remote Config: **veja o enunciado** (seções *Setup Firebase*, Ex4 e Ex5). Sem `firebase-tools`? Há o **Plano B** pelo console. Se o favorito **some no F5**, olhe o console do app: `permission-denied` = regras.
+Passo a passo do projeto Firebase e das regras do Firestore: **veja o enunciado** (seções *Setup Firebase* e Ex4). O Remote Config (TASK 8) foi adiado. Sem `firebase-tools`? Há o **Plano B** pelo console. Se o favorito **some no F5**, olhe o console do app: `permission-denied` = regras.
 
 ## Offline-first — TASK 10 a 15 🧑‍🏫/🧑‍💻
 Teste cada TASK com `flutter test test/offline_test.dart` (cada grupo = uma TASK; começa tudo vermelho). Para ver no app: ✈️ na barra do topo = modo avião. **Use sempre `--web-port 5300`** — o cache fica no navegador *por porta*; com porta sorteada o app abre "sem dados salvos" toda vez.

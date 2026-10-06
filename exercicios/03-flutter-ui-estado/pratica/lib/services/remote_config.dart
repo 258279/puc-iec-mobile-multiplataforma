@@ -1,5 +1,6 @@
 // lib/services/remote_config.dart
 //
+// ⏸ ADIADA — a TASK 8 NÃO faz parte desta atividade (pule este arquivo).
 // Ex5 (TASK 8): busca o parâmetro `banner_message` do Firebase Remote Config.
 //
 // Pré-requisito: TASK 3 feito (projeto Firebase configurado) + parâmetro

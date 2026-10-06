@@ -6,8 +6,7 @@
  *  1. Ex1 · MovieCard compõe título + nota (⭐) + ano           — 1pt
  *  2. Ex2 · favoritar (local) reflete no card + contador + limpar — 1pt
  *  3. Ex3 · teste autoral do provider local (favorites_test)   — 1pt
- *  4. Ex4 · Firestore — favoritos persistem após reload        — 1,5pt
- *  5. Ex5 · Remote Config — banner busca valor remoto          — 1pt
+ *  4. Ex4 · Firestore — favoritos persistem após reload        — 2,5pt  (Remote Config/TASK 8 adiado: o 1pt dele veio pra cá)
  *  6. T10 · persistência offline do Firestore (main.dart)      — 0,5pt
  *  7. T11 · OfflineBanner                                      — 1pt
  *  8. T12 · Movie.toJson / fromJson                            — 1pt
@@ -61,7 +60,6 @@ async function main() {
   const card = byName('movie_card.dart');
   const favorites = byName('favorites.dart');
   const home = byName('home_screen.dart');
-  const remoteConfig = byName('remote_config.dart');
   const favTest = byName('favorites_test.dart');
   const main_ = byName('main.dart');
   const bannerCode = byName('offline_banner.dart');
@@ -116,7 +114,9 @@ async function main() {
     favorites,
   );
   const firebaseInitialized = /Firebase\.initializeApp/.test(main_);
-  const firestoreRead = /FirebaseFirestore\.instance/.test(favorites) && /\.get\s*\(\s*\)/.test(favorites);
+  // leitura: .get(...) (com ou sem GetOptions, ex.: Source.cache) ou .snapshots()
+  const firestoreRead =
+    /FirebaseFirestore\.instance/.test(favorites) && (/\.get\s*\(/.test(favorites) || /\.snapshots\s*\(/.test(favorites));
   const firestoreWrite =
     /FirebaseFirestore\.instance/.test(favorites) && (/\.set\s*\(/.test(favorites) || /\.update\s*\(/.test(favorites));
   const firestoreSignals = [firestoreImport, firebaseInitialized, firestoreRead, firestoreWrite].filter(
@@ -125,24 +125,12 @@ async function main() {
   criteria.push({
     id: 'ex4-firestore',
     description: 'Ex4 · Firestore — favoritos persistem após reload',
-    weight: 1.5,
-    earned: Math.round((firestoreSignals / 4) * 1.5 * 100) / 100,
+    weight: 2.5,
+    earned: Math.round((firestoreSignals / 4) * 2.5 * 100) / 100,
     publicNote: `import=${firestoreImport} · Firebase.initializeApp no main=${firebaseInitialized} · leitura=${firestoreRead} · escrita=${firestoreWrite} (persistência real conferida na leitura manual + print/GIF do README)`,
   });
 
-  // ---- 5. Ex5 — Remote Config (2): import + fetchAndActivate + getString + usado no home ----
-  const rcImport = /firebase_remote_config/.test(remoteConfig);
-  const rcFetch = /fetchAndActivate\s*\(\s*\)/.test(remoteConfig);
-  const rcGet = /getString\s*\(/.test(remoteConfig);
-  const rcUsedInHome = /fetchBannerMessage/.test(home);
-  const rcSignals = [rcImport, rcFetch, rcGet, rcUsedInHome].filter(Boolean).length;
-  criteria.push({
-    id: 'ex5-remote-config',
-    description: 'Ex5 · Remote Config — banner busca valor remoto',
-    weight: 1,
-    earned: Math.round((rcSignals / 4) * 1 * 100) / 100,
-    publicNote: `import=${rcImport} · fetchAndActivate=${rcFetch} · getString=${rcGet} · usado no HomeScreen=${rcUsedInHome}`,
-  });
+  // (Ex5 · Remote Config / TASK 8 foi ADIADO em out/2026 — não pontua; o 1 pt foi pro Ex4.)
 
   // ---- 6. Ex3 — teste autoral do provider local (2) ----
   const hasTest = /\btest\s*\(/.test(favTest);

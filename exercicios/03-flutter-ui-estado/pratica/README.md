@@ -30,7 +30,7 @@ Comece com os testes **vermelhos**; deixe-os **verdes**. `test/checklist_test.da
 | 5 | `lib/screens/home_screen.dart` | contador `♥ N` no header | 🧑‍💻 |
 | 6 | `lib/screens/home_screen.dart` | botão **limpar** favoritos | 🧑‍💻 |
 | 7 | `lib/state/favorites.dart` | persistir favoritos no **Firestore** | 🧑‍💻 médio |
-| 8 | `lib/services/remote_config.dart` + home | banner via **Remote Config** | 🧑‍💻 médio |
+| 8 | `lib/services/remote_config.dart` + home | ⏸ **ADIADA** (Remote Config) — não faz parte desta atividade, pule | — |
 | 9 | `test/favorites_test.dart` | **você escreve** um teste do provider | 🧑‍💻 |
 | 11 | `lib/widgets/offline_banner.dart` | aviso "você está offline" | 🧑‍💻 fácil |
 | 12 | `lib/models/movie.dart` | `toJson` / `fromJson` | 🧑‍💻 fácil |
