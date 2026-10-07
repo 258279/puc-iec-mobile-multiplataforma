@@ -9,3 +9,5 @@ pubspec.lock
 .idea/
 .vscode/
 .env.local
+# Widget Preview related
+.widget_preview/
